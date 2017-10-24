@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 style="text-align:center;">Add A Blog Entry</h1>
+<hr />
+<div style="background-color:rgb(243, 184, 23);text-align:center; margin-top:20px">
+
+    <form style="padding: 20px 0" method='post'>
+        <label>
+            Title for your new blog:<br />
+            <input type="text" name='blog-title' value="{{blog_title}}" />
+            <p class="error">{{title_error}}</p>
+        </label>
+        <br /><br />
+        <label>
+            Your new blog:<br />
+            <input type="text" name='blog-body' value="{{blog_body}}" />
+            <p class="error">{{body_error}}</p>
+        </label>
+        <br /><br />
+        <input type="submit" value='Add Entry' />
+    </form>
+</div>
+{% endblock %}
+

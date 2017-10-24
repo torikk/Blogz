@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .blogposts {
+        margin: 10px 0;
+        background-color:rgb(243, 184, 23);
+        color:#333;
+    }
+    .blogposts h2{
+        padding: 20px 20px 0; 
+    }
+    .blogposts p{
+        padding: 0 20px 0; 
+        margin-top:-10px;
+    }
+    .blogposts form{
+        padding: 0 20px 20px; 
+    }
+</style>
+    <h1 style="text-align:center">Build A Blog</h1>
+    
+    <hr />
+
+    {% if tasks|length == 0 %}
+    <p>No blogs here</p>
+    {% else %}
+
+        
+            {% for task in tasks %}
+            <div class="blogposts">
+            <input type="hidden" name="task-id" value="{{task.id}}" />
+            <h2><a href="/blog?id={{task.id}}">{{task.title}}</a></h2>
+                <p>{{task.body}}</p>
+                <form method="POST" action="/delete-task" style="display:inline-block;">
+                    <input type="hidden" name="task-id" value="{{task.id}}" />
+                    <input type="submit" value="Delete" />
+                </form>
+            </div>
+            {% endfor %}
+        
+
+    {% endif %}
+
+  
+
+{% endblock %}

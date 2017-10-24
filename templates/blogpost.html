@@ -1,0 +1,30 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+        .blogposts {
+            margin: 10px 0;
+            background-color:rgb(243, 184, 23);
+            color:#333;
+        }
+        .blogposts h2{
+            padding: 20px 20px 0; 
+        }
+        .blogposts p{
+            padding: 0 20px 20px; 
+            margin-top:-10px;
+        }
+        
+</style>
+
+<h1 style="text-align:center;">Blog Entry #{{task.id}}</h1>
+<hr />
+<div class="blogposts">
+        <h2>{{task.title}}</h1>
+        <p>{{task.body}}</p>
+            
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,23 @@
+{% block content %}
+<style>
+        .user {
+            margin: 10px 0;
+            color:rgb(243, 184, 23);
+            text-decoration: none;
+        } 
+        
+        .user p{
+            padding: 0 20px 20px; 
+            margin-top:-10px;
+        }
+        
+</style>
+
+<h1 style="text-align:center;color:#333;">Blog Users</h1>
+<hr />
+<div class="user">
+    {% for user in users%}
+        <a href="/blog?user={{user.id}}">{{user.email}}</pa>
+    {% endfor %}        
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{title}}</title>
+    </head>
+    <style>
+        * {
+            font-weight: 200;
+        }
+
+        .blogbody {
+            background-color:rgb(255, 255, 255);
+            max-width:1000px;
+            margin:auto;
+            margin:30px 100px;
+            font-family:Helvetica, sans-serif;
+        }
+        .btn {
+            border: 1px solid #02256E;
+            background-color:rgba(255, 255, 255, 0.73);
+            color:#333;
+            display: inline-block;
+            padding:5px 15px;
+            margin-right: 10px;
+            font-family: helvetica;
+        }
+        a {
+            text-decoration:none;
+            color:#333;
+        }
+        .error {
+            font-size:12px;
+            color: red;
+            font-weight:bold;
+        }
+
+    </style>
+<body>
+    <div class="blogbody">
+    <a class="btn" href="http://127.0.0.1:5000/userlist">Main Page</a>
+    <a class="btn" href="http://127.0.0.1:5000/blog">All Posts</a>
+    <a class="btn" href="http://127.0.0.1:5000/newpost">Add Blog</a>
+    <a style="text-align:right" href='/login'>Log in</a> | 
+    <a style="text-align:right" href='/logout'>Log out</a>
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    <ul>
+    {% for category,message in messages %}
+        <li class="{{category}}">{{message}}</li>
+    {% endfor %}
+    </ul>
+    {% endwith %}
+
+    {% block content %}
+    {% endblock %}
+    </div>
+
+</body>
+</html>
