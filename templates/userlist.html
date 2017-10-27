@@ -1,23 +1,25 @@
+{% extends "base.html" %}
 {% block content %}
 <style>
         .user {
             margin: 10px 0;
-            color:rgb(243, 184, 23);
-            text-decoration: none;
+            
         } 
         
-        .user p{
+        .user a {
             padding: 0 20px 20px; 
             margin-top:-10px;
+            color:rgb(243, 184, 23);
+            text-decoration: none;
         }
         
 </style>
-
+<div class="user">
 <h1 style="text-align:center;color:#333;">Blog Users</h1>
 <hr />
-<div class="user">
-    {% for user in users%}
-        <a href="/blog?user={{user.id}}">{{user.email}}</pa>
+
+    {% for user in user %}
+        <a href="/blog?user={{user.id}}">{{user.email}}</a><br />
     {% endfor %}        
 </div>
 {% endblock %}

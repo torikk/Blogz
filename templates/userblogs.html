@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+        .blogposts {
+            margin: 10px 0;
+            background-color:rgb(243, 184, 23);
+            color:#333;
+        }
+        .blogposts h2{
+            padding: 20px 20px 0; 
+        }
+        .blogposts p{
+            padding: 0 20px 0; 
+            margin-top:-10px;
+        }
+        .blogposts form{
+            padding: 0 20px 20px; 
+        }
+    </style>
+    <h1>Blog Posts for specific user</h1>
+<hr />
+
+    
+        {% if task.owner_id == user.id %}
+            {% for task in task %} 
+                    <div class="blogposts">
+                        <form>
+                            <h2> {{task.title}} </h2>
+                            <p> {{task.body}} </p>
+                        </form>
+                    </div>  
+            {% endfor %} 
+        {% endif %}
+    
+{% endblock %}

@@ -1,0 +1,31 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+        .blogposts {
+            margin: 10px 0;
+            background-color:rgb(243, 184, 23);
+            color:#333;
+        }
+        .blogposts h2{
+            padding: 20px 20px 0; 
+        }
+        .blogposts p{
+            padding: 0 20px 20px; 
+            margin-top:-10px;
+        }
+        
+</style>
+
+<h1 style="text-align:center;">Blog User: {{user.email}}</h1>
+<hr />
+<div class="blogposts">
+    {% for task in task %} 
+        <h2>{{task.title}}</h1>
+        <p>{{task.body}}</p>
+    {% endfor %}    
+</div>
+{% endblock %}
+
+
