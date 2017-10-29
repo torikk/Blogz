@@ -104,7 +104,7 @@ def register():
         password = request.form['password']
         verify = request.form['verify']
 
-        if (email.strip() == ""):
+        if (email == ""):
             flash("Please enter a valid email", "error")
             return redirect('/register')
         else:
@@ -113,7 +113,7 @@ def register():
                 "error")
                 return redirect('/register')
 
-        if (password.strip() == ""):
+        if (password == ""):
             flash("Please enter a valid password", "error")
             return redirect('/register')
         else:
