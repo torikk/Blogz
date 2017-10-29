@@ -76,6 +76,27 @@ def login():
 
     return render_template('login.html', title="Log In")
 
+
+
+@app.route('/blog', methods=['GET'])
+def list_blogs():
+    id = request.args.get('id')
+    user = request.args.get('user')
+
+    if id == None:
+        if user == None:
+            return render_template('todos.html', 
+            task=get_blogs(), user=get_users())  
+        else:
+            user = int(user)
+            return render_template('userblogs.html', 
+            user=user, task=get_blogs())    
+    else:
+        id = int(id)
+        return render_template('displayblog.html', 
+        task=get_blogs(), id=id, user=get_users())
+
+
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
@@ -116,32 +137,6 @@ def register():
             flash('Passwords do not match', 'error')
 
     return render_template('register.html')
-
-@app.route('/logout')
-def logout():
-    del session['email']
-    return redirect('/blog')
-
-
-@app.route('/blog', methods=['GET'])
-def list_blogs():
-    id = request.args.get('id')
-    user = request.args.get('user')
-
-    if id == None:
-        if user == None:
-            return render_template('todos.html', 
-            task=get_blogs(), user=get_users())  
-        else:
-            user = int(user)
-            return render_template('userblogs.html', 
-            user=user, task=get_blogs())    
-    else:
-        id = int(id)
-        return render_template('displayblog.html', 
-        task=get_blogs(), id=id, user=get_users())
-
-
 
 
 @app.route('/', methods=['GET'])
@@ -197,6 +192,10 @@ def new_post():
         
     return render_template('addblog.html',title="BLOGS")
 
+@app.route('/logout')
+def logout():
+    del session['email']
+    return redirect('/blog')
 
 
 if __name__ == '__main__':
