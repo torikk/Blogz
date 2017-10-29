@@ -83,19 +83,37 @@ def register():
         password = request.form['password']
         verify = request.form['verify']
 
-        # TODO - validate user's data
-
-        existing_user = User.query.filter_by(email=email).first()
-        if not existing_user:
-            new_user = User(email, password)
-            db.session.add(new_user)
-            db.session.commit()
-            session['email'] = email
-            session['owner_id'] = new_user.id
-            return redirect('/newpost')
+        if (email.strip() == ""):
+            flash("Please enter a valid email", "error")
+            return redirect('/register')
         else:
-            # TODO - user better response messaging
-            return "<h1>Duplicate user</h1>"
+            if len(email) < 3:
+                flash("Email must contain at least 3 characters. Please enter a valid username", 
+                "error")
+                return redirect('/register')
+
+        if (password.strip() == ""):
+            flash("Please enter a valid password", "error")
+            return redirect('/register')
+        else:
+            if len(password) < 3:
+                flash("Password must contain at least 3 characters. Please enter a valid password", 
+                "error")
+                return redirect('/register')
+
+        if password == verify:
+            existing_user = User.query.filter_by(email=email).first()
+            if not existing_user:
+                new_user = User(email, password)
+                db.session.add(new_user)
+                db.session.commit()
+                session['email'] = email
+                return redirect('/newpost')
+            else:
+                flash('This email is already taken', 'error')
+                return redirect ('/register')
+        else:
+            flash('Passwords do not match', 'error')
 
     return render_template('register.html')
 

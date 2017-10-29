@@ -22,15 +22,19 @@
 <hr />
 
     
-        {% if task.owner_id == user.id %}
+        
+        
             {% for task in task %} 
+                {% if user == task.owner_id %} 
+                
                     <div class="blogposts">
                         <form>
                             <h2> {{task.title}} </h2>
                             <p> {{task.body}} </p>
                         </form>
-                    </div>  
+                    </div> 
+                
+                {% endif %} 
             {% endfor %} 
-        {% endif %}
     
 {% endblock %}
